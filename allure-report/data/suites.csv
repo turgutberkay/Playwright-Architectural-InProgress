@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"broken","Sat Mar 09 22:05:17 EET 2024","Sat Mar 09 22:05:48 EET 2024","30779","firefox","example.spec.js","","","","get started link",""
+"broken","Sat Mar 09 22:05:17 EET 2024","Sat Mar 09 22:05:47 EET 2024","30352","chromium","example.spec.js","","","","get started link",""
+"broken","Sat Mar 09 22:05:17 EET 2024","Sat Mar 09 22:05:47 EET 2024","30225","webkit","example.spec.js","","","","get started link",""
