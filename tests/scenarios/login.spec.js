@@ -1,7 +1,7 @@
 const { test } = require('@playwright/test');
 const { LoginPage } = require('../../pages/login');
 
-test('login senaryosu', async ({ page }) => {
+test('Success Login', async ({ page }) => {
 
     const login = new LoginPage(page);
 
@@ -9,6 +9,7 @@ test('login senaryosu', async ({ page }) => {
 
     //Go to Url
     await login.goTo();
+    
 
     //Accept Popup
     await login.clickAcceptButtonPopup();

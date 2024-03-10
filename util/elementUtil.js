@@ -23,8 +23,10 @@ exports.ElementUtil = class ElementUtil {
     }
 
     async notEqualsElementText(locator,text) {
-        await this.elementUtil.checkElement(locator);
-        assert.strictEqual(await this.page.textContent(locator), text);
+        //burası duzeltılecek
+        await this.checkElement(locator);
+        const elementText = await this.page.textContent(locator.toString());
+        assert.notStrictEqual(elementText, text);
     }
 
 }
