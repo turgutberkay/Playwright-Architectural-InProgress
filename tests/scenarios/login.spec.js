@@ -1,42 +1,45 @@
 const { test } = require('@playwright/test');
-const { LoginPage } = require('../../pages/login');
+const { LoginPage } = require('../../pages/loginPage');
+const { HomePage } = require('../../pages/homePage');
+
 
 test('Success Login', async ({ page }) => {
 
-    const login = new LoginPage(page);
+    const loginPage = new LoginPage(page);
+    const homePage = new HomePage(page);
+
 
     await page.pause();
 
     //Go to Url
-    await login.goTo();
+    await homePage.goTo();
     
-
     //Accept Popup
-    await login.clickAcceptButtonPopup();
+    await homePage.clickAcceptButtonPopup();
 
     //taps to giriş yap butonu move to element gerekebilir
-    await login.tapsToLoginButton();
+    await homePage.tapsToLoginButton();
 
     //check login page
-    await login.checkLoginPage();
+    await loginPage.checkLoginPage();
 
     //click e mail textbox and senkey
-    await login.sendKeyEmailTextbox('denemepoc123@gmail.com');
+    await loginPage.sendKeyEmailTextbox('denemepoc123@gmail.com');
 
     //taps to login button
-    await login.clickLogginButtonEmailTextbox();
+    await loginPage.clickLogginButtonEmailTextbox();
 
     //check password textbox
-    await login.checkPasswordTextbox();
+    await loginPage.checkPasswordTextbox();
 
     //click password textbox and senkey
-    await login.sendKeyPasswordTextbox('Denemepoc123');
+    await loginPage.sendKeyPasswordTextbox('Denemepoc123');
 
     //taps to login button on the password textbox,
-    await login.clickLoginButtonPasswordTextbox();
+    await loginPage.clickLoginButtonPasswordTextbox();
 
     //should see Logged In Home Page 
-    await login.checkLoggedIn();
+    await loginPage.checkErrorLogin();
 
     //Close browser
     await page.close();

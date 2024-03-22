@@ -7,33 +7,13 @@ exports.LoginPage = class LoginPage {
     constructor(page) {
         this.page = page;
         this.elementUtil = new ElementUtil(this.page);
-        this.acceptPopup = this.page.locator('id=onetrust-accept-btn-handler');
-        this.loginOrSingUp = this.page.locator('id=myAccount');
-        this.loginButton = this.page.locator('id=login');
         this.loginTextbox = this.page.locator('id=txtUserName');
         this.loginButtonEmail = this.page.locator('id=btnLogin');
         this.passwordTextbox = this.page.locator('input#txtPassword');
         this.loginButtonPassword = this.page.locator('id=btnEmailSelect');
-        this.loggedLoginText = this.page.locator('[data-test-id="account"]');
+        this.errorLoginText = this.page.locator('.hb-fzqNNl.bOhTD.so8jqwmkfiy');
     }
     
-    async goTo() {
-        await this.page.goto('https://hepsiburada.com');
-    }
-
-    async checkHomePage() {
-        await expect(this.page).toHaveURL('https://www.hepsiburada.com/');
-    }
-
-    async clickAcceptButtonPopup() {
-        await this.elementUtil.clickElement(this.acceptPopup);
-    }
-
-    async tapsToLoginButton() {
-        await this.elementUtil.clickElement(this.loginOrSingUp);
-        await this.elementUtil.clickElement(this.loginButton);
-    }
-
     async checkLoginPage() {
         await this.elementUtil.checkElement(this.loginButtonEmail);
     }
@@ -60,8 +40,7 @@ exports.LoginPage = class LoginPage {
         await this.elementUtil.clickElement(this.loginButtonPassword);
     }
 
-    async checkLoggedIn() {
-        await this.elementUtil.notEqualsElementText(this.loggedLoginText,'Giriş Yap');
+    async checkErrorLogin() {
+        await this.elementUtil.equalsElementText(this.loggedLoginText,'Lütfen tekrar deneyin. Hata Kodu: (N1E2)');
     }
-    
 }

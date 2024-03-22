@@ -22,11 +22,32 @@ exports.ElementUtil = class ElementUtil {
         await this.page.keyboard.type(text);
     }
 
-    async notEqualsElementText(locator,text) {
-        //burası duzeltılecek
+    async equalsElementText(locator,text) {
+        //burası duzeltılecek element yanlıs suan
+        await this.page.waitForLoadState('load', { timeout: 12000 });
         await this.checkElement(locator);
-        const elementText = await this.page.textContent(locator.toString());
-        assert.notStrictEqual(elementText, text);
+        const elementText = await locator.textContent(); 
+        assert.strictEqual(elementText, text);
+    }
+
+    async checkElementNotEmpty(locator) {
+        await this.page.waitForLoadState('load', { timeout: 12000 });
+        const elements = await locator.count();
+        if (elements < 1) {
+        throw new Error("Element not found.");}
+    }
+
+    async clickRandomElementFromElements(locator) {
+        await this.page.waitForLoadState('load', { timeout: 12000 });
+        const elements = await locator.all();
+        const randomIndex = Math.floor(Math.random() * elements.length);
+        await this.clickElement(elements[randomIndex]);    
+    }
+    async newWindowHandle() {
+        const page2 = await this.page.context();
+        await this.page === await page2;
+        await this.page.waitForLoadState('load', { timeout: 12000 });
+        console.log(await this.page.title())
     }
 
 }
